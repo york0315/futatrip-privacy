@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Futa Trip 隱私權政策</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem;
+    font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Helvetica Neue", sans-serif;
+    color: #1b1f21; background: #fff;
+  }
+  @media (prefers-color-scheme: dark) { body { color: #e7ebea; background: #14181a; } }
+  h1 { font-size: 1.7rem; line-height: 1.3; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2.2rem 0 .5rem; }
+  .sub { color: #66737a; margin: 0 0 2rem; font-size: .95rem; }
+  @media (prefers-color-scheme: dark) { .sub { color: #93a0a5; } }
+  table { border-collapse: collapse; width: 100%; margin: .6rem 0; font-size: .95rem; }
+  th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid #dfe5e3; vertical-align: top; }
+  @media (prefers-color-scheme: dark) { th, td { border-color: #2c3538; } }
+  th { font-weight: 600; white-space: nowrap; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
+  ul { padding-left: 1.2rem; }
+  .lang { margin: 0 0 2rem; font-size: .9rem; }
+  .lang a { margin-right: .8rem; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #dfe5e3; font-size: .9rem; color: #66737a; }
+  @media (prefers-color-scheme: dark) { footer { border-color: #2c3538; color: #93a0a5; } }
+</style>
+</head>
+<body>
+
+<h1>Futa Trip 隱私權政策</h1>
+<p class="sub">最後更新：2026 年 9 月 24 日</p>
+<p class="lang"><a href="#zh">繁體中文</a><a href="#ja">日本語</a><a href="#en">English</a></p>
+
+<h2 id="zh">一、我們收什麼</h2>
+<p>Futa Trip（以下稱「本 App」）是一款人孔蓋收集與行程規劃工具。大部分資料只留在你的裝置上；只有下面這幾項會上傳到伺服器。</p>
+
+<table>
+  <tr><th>項目</th><th>內容</th><th>什麼時候</th></tr>
+  <tr><td>帳號識別碼</td><td>Firebase 產生的使用者編號（uid）。用 Apple 或 Google 登入時，我們只收到這組編號，不會收到你的密碼。</td><td>你登入或使用雲端功能時</td></tr>
+  <tr><td>暱稱</td><td>你自己設定的顯示名稱，會顯示在你分享的照片旁邊。</td><td>你設定暱稱時</td></tr>
+  <tr><td>你選擇分享的照片</td><td>照片本身，以及你在 App 內框出的裁切範圍。<strong>上傳的照片是重新編碼過的，不含原始 EXIF（拍攝時間與 GPS 座標已被移除）。</strong></td><td>你按下「上傳給大家看」時</td></tr>
+  <tr><td>打卡計數</td><td>你在某一枚人孔蓋打過卡這件事（uid ＋ 時間），用來顯示「幾個人來過」。<strong>不含座標。</strong></td><td>你打卡時</td></tr>
+  <tr><td>分享出去的路線</td><td>你按「建立下載連結」時，該條路線的內容、名稱、節點數與日期。連結最長 90 天後自動失效。</td><td>你主動建立分享連結時</td></tr>
+</table>
+
+<h2>二、只留在你裝置上的東西</h2>
+<ul>
+  <li><strong>你的位置</strong>：用來顯示附近的人孔蓋並依距離排序。位置資料不會上傳。</li>
+  <li><strong>打卡紀錄與打卡照片</strong>：包含照片的拍攝時間與座標。除非你主動選擇分享某一張照片，否則這些完全不離開裝置。</li>
+  <li><strong>行程、路線與備註</strong>：除非你主動建立分享連結。</li>
+  <li><strong>相簿照片的中繼資料</strong>：補登打卡時，本 App 會讀取你選的那張照片的拍攝時間與座標來核對距離。這個讀取只在本機進行。</li>
+</ul>
+
+<h2>三、資料存在哪裡</h2>
+<p>上傳的資料存放在 Google Firebase（Cloud Firestore），伺服器位置為 <code>asia-northeast1</code>（東京）。本 App 沒有自己的伺服器，也沒有後台可以瀏覽使用者資料。</p>
+
+<h2>四、誰看得到</h2>
+<ul>
+  <li><strong>你上傳分享的照片與暱稱是公開的</strong>：任何使用本 App 的人都看得到，也可以按讚或選擇把它設為自己畫面上的顯示圖。上傳前請不要拍到你不想公開的人或資訊。</li>
+  <li>打卡計數只以總數呈現，不會顯示是誰。</li>
+  <li>分享連結只有拿到連結的人打得開。</li>
+</ul>
+
+<h2>五、我們不做的事</h2>
+<ul>
+  <li>不使用第三方廣告或分析 SDK，不做跨 App 追蹤（因此不會出現 App 追蹤透明度的詢問）。</li>
+  <li>不販售、不交換你的資料。</li>
+  <li>不收集聯絡人、通話紀錄、瀏覽紀錄或裝置識別碼。</li>
+</ul>
+
+<h2>六、保留多久、怎麼刪除</h2>
+<ul>
+  <li>你上傳的照片會一直保留，直到你自己刪除它，或刪除帳號。App 內在照片上可直接刪除自己的那一張。</li>
+  <li><strong>刪除帳號</strong>：設定頁最下方有「刪除帳號」。按下之後，與你的 uid 有關的雲端資料（照片、暱稱、打卡計數、分享連結）會一併刪除，且無法復原。</li>
+  <li>分享連結最長 90 天後自動失效，你也可以隨時撤銷。</li>
+  <li>裝置上的資料，移除本 App 即一併移除。</li>
+</ul>
+
+<h2>七、兒童</h2>
+<p>本 App 不以 13 歲以下兒童為對象，也不會刻意收集其個人資料。</p>
+
+<h2>八、變更</h2>
+<p>本政策如有變更，會更新本頁最上方的日期。重大變更會在 App 內另行說明。</p>
+
+<h2>九、聯絡</h2>
+<p>對本政策或你的資料有疑問，請來信：<a href="mailto:nsay2526@gmail.com">nsay2526@gmail.com</a></p>
+
+<hr style="margin:3rem 0 2rem;border:0;border-top:1px solid #dfe5e3">
+
+<h1 id="ja">Futa Trip プライバシーポリシー</h1>
+<p class="sub">最終更新：2026年9月24日</p>
+
+<h2>1. 取得する情報</h2>
+<p>Futa Trip（以下「本アプリ」）はマンホール収集と旅程作成のアプリです。ほとんどのデータは端末内にのみ保存され、サーバーに送信されるのは以下のものだけです。</p>
+<table>
+  <tr><th>項目</th><th>内容</th><th>タイミング</th></tr>
+  <tr><td>アカウント識別子</td><td>Firebase が発行する利用者 ID（uid）。Apple・Google でログインした場合も、当方が受け取るのはこの ID のみで、パスワードは受け取りません。</td><td>ログイン時・クラウド機能の利用時</td></tr>
+  <tr><td>ニックネーム</td><td>ご自身で設定する表示名。共有した写真に併記されます。</td><td>設定したとき</td></tr>
+  <tr><td>共有を選んだ写真</td><td>写真本体と、アプリ内で指定した切り抜き範囲。<strong>アップロードされる写真は再エンコードされ、元の EXIF（撮影日時・GPS）は含まれません。</strong></td><td>「みんなに公開する」を押したとき</td></tr>
+  <tr><td>チェックイン数</td><td>あるマンホールにチェックインした事実（uid と日時）。「何人が訪れたか」の表示に使います。<strong>座標は含みません。</strong></td><td>チェックイン時</td></tr>
+  <tr><td>共有したコース</td><td>「ダウンロードリンクを作る」を押したときの、そのコースの内容・名称・地点数・日付。リンクは最長 90 日で失効します。</td><td>ご自身でリンクを作成したとき</td></tr>
+</table>
+
+<h2>2. 端末内にのみ保存されるもの</h2>
+<ul>
+  <li><strong>位置情報</strong>：近くのマンホールを距離順に表示するために使用し、送信しません。</li>
+  <li><strong>チェックインの記録と写真</strong>：撮影日時と座標を含みます。ご自身で共有を選んだ写真を除き、端末から出ることはありません。</li>
+  <li><strong>旅程・コース・メモ</strong>：共有リンクを作成した場合を除きます。</li>
+  <li><strong>写真ライブラリのメタデータ</strong>：後からチェックインする際、選んだ写真の撮影日時と座標を読み取って距離を照合します。読み取りは端末内で完結します。</li>
+</ul>
+
+<h2>3. 保存場所</h2>
+<p>送信されたデータは Google Firebase（Cloud Firestore）の <code>asia-northeast1</code>（東京）に保存されます。当方は独自のサーバーを持たず、利用者データを閲覧する管理画面もありません。</p>
+
+<h2>4. 公開範囲</h2>
+<ul>
+  <li><strong>アップロードした写真とニックネームは公開されます。</strong>本アプリの利用者は誰でも閲覧でき、「いいね」や自分の表示画像への設定ができます。公開したくない人物や情報が写っていないかご確認ください。</li>
+  <li>チェックイン数は合計のみを表示し、個人は表示しません。</li>
+  <li>共有リンクは、リンクを知っている人のみが開けます。</li>
+</ul>
+
+<h2>5. 行わないこと</h2>
+<ul>
+  <li>第三者の広告・解析 SDK を使用せず、アプリをまたぐトラッキングも行いません（そのため ATT の許可を求めることもありません）。</li>
+  <li>データの販売・交換は行いません。</li>
+  <li>連絡先・通話履歴・閲覧履歴・端末識別子は取得しません。</li>
+</ul>
+
+<h2>6. 保存期間と削除</h2>
+<ul>
+  <li>アップロードした写真は、ご自身で削除するかアカウントを削除するまで保存されます。アプリ内で自分の写真を削除できます。</li>
+  <li><strong>アカウントの削除</strong>：設定画面の最下部にあります。実行すると、その uid に紐づくクラウド上のデータ（写真・ニックネーム・チェックイン数・共有リンク）がすべて削除され、復元できません。</li>
+  <li>共有リンクは最長 90 日で失効し、いつでも取り消せます。</li>
+  <li>端末内のデータは、本アプリを削除すると一緒に削除されます。</li>
+</ul>
+
+<h2>7. お子様について</h2>
+<p>本アプリは 13 歳未満のお子様を対象としておらず、意図的に個人情報を取得することもありません。</p>
+
+<h2>8. 変更</h2>
+<p>本ポリシーを変更した場合は、ページ冒頭の日付を更新します。重要な変更はアプリ内でもお知らせします。</p>
+
+<h2>9. お問い合わせ</h2>
+<p><a href="mailto:nsay2526@gmail.com">nsay2526@gmail.com</a></p>
+
+<hr style="margin:3rem 0 2rem;border:0;border-top:1px solid #dfe5e3">
+
+<h1 id="en">Futa Trip Privacy Policy</h1>
+<p class="sub">Last updated: 24 September 2026</p>
+
+<h2>1. What we collect</h2>
+<p>Futa Trip is a manhole-cover collecting and trip-planning app. Most data stays on your device; only the following is uploaded.</p>
+<table>
+  <tr><th>Item</th><th>What it is</th><th>When</th></tr>
+  <tr><td>Account identifier</td><td>A user id (uid) issued by Firebase. When you sign in with Apple or Google we receive only this id, never your password.</td><td>When you sign in or use cloud features</td></tr>
+  <tr><td>Nickname</td><td>A display name you choose. It appears next to photos you share.</td><td>When you set it</td></tr>
+  <tr><td>Photos you choose to share</td><td>The photo, plus the crop you framed in the app. <strong>Uploaded photos are re-encoded and carry no original EXIF — capture time and GPS are stripped.</strong></td><td>When you tap “Share with everyone”</td></tr>
+  <tr><td>Check-in counts</td><td>The fact that you checked in at a cover (uid and time), used to show how many people have been there. <strong>No coordinates.</strong></td><td>When you check in</td></tr>
+  <tr><td>Routes you share</td><td>When you create a download link: that route's contents, name, stop count and date. Links expire after at most 90 days.</td><td>When you create a share link</td></tr>
+</table>
+
+<h2>2. What stays on your device</h2>
+<ul>
+  <li><strong>Your location</strong>, used to show nearby covers sorted by distance. It is never uploaded.</li>
+  <li><strong>Check-in records and photos</strong>, including capture time and coordinates. Unless you choose to share a photo, none of it leaves the device.</li>
+  <li><strong>Trips, routes and notes</strong>, unless you create a share link.</li>
+  <li><strong>Photo metadata</strong>: when logging a past check-in, the app reads the capture time and location of the photo you pick to verify distance. This happens entirely on device.</li>
+</ul>
+
+<h2>3. Where data is stored</h2>
+<p>Uploaded data is stored in Google Firebase (Cloud Firestore), region <code>asia-northeast1</code> (Tokyo). We run no server of our own and have no admin console for browsing user data.</p>
+
+<h2>4. Who can see it</h2>
+<ul>
+  <li><strong>Photos you upload and your nickname are public</strong> — anyone using the app can see them, like them, or set one as their own display image. Please check that nothing you'd rather keep private is in the frame.</li>
+  <li>Check-in counts are shown as totals only, never as names.</li>
+  <li>Share links are only reachable by someone who has the link.</li>
+</ul>
+
+<h2>5. What we don't do</h2>
+<ul>
+  <li>No third-party advertising or analytics SDKs, and no cross-app tracking (so you'll never see an App Tracking Transparency prompt).</li>
+  <li>We do not sell or trade your data.</li>
+  <li>We do not collect contacts, call history, browsing history or device identifiers.</li>
+</ul>
+
+<h2>6. Retention and deletion</h2>
+<ul>
+  <li>Photos you upload stay until you delete them or delete your account. You can delete your own photo from inside the app.</li>
+  <li><strong>Delete account</strong> sits at the bottom of Settings. It removes the cloud data tied to your uid — photos, nickname, check-in counts, share links — permanently.</li>
+  <li>Share links expire after at most 90 days, and you can revoke one at any time.</li>
+  <li>On-device data is removed when you delete the app.</li>
+</ul>
+
+<h2>7. Children</h2>
+<p>The app is not directed at children under 13 and does not knowingly collect their personal information.</p>
+
+<h2>8. Changes</h2>
+<p>If this policy changes we will update the date at the top of this page. Significant changes will also be noted in the app.</p>
+
+<h2>9. Contact</h2>
+<p><a href="mailto:nsay2526@gmail.com">nsay2526@gmail.com</a></p>
+
+<footer>Futa Trip · 本頁同時提供繁體中文、日本語與 English 版本，內容一致。</footer>
+</body>
+</html>
