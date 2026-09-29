@@ -39,15 +39,15 @@
 
 <table>
   <tr><th>項目</th><th>內容</th><th>什麼時候</th></tr>
-  <tr><td>帳號識別碼</td><td>Firebase 產生的使用者編號（uid）。用 Apple 或 Google 登入時，我們只收到這組編號，不會收到你的密碼。</td><td>你登入或使用雲端功能時</td></tr>
+  <tr><td>帳號識別碼與電子郵件</td><td>Firebase Authentication 產生的使用者編號（uid）。用 Apple 或 Google 登入時，Firebase 會收到並保存這組編號，以及 Apple／Google 提供的電子郵件地址（若你用 Apple 的「隱藏我的電子郵件」，收到的是 Apple 的轉寄地址）。電子郵件只用來在設定頁顯示你登入的是哪個帳號。我們不會收到你的密碼。</td><td>你登入或使用雲端功能時</td></tr>
   <tr><td>暱稱</td><td>你自己設定的顯示名稱，會顯示在你分享的照片旁邊。</td><td>你設定暱稱時</td></tr>
   <tr><td>你選擇分享的照片</td><td>照片本身，以及你在 App 內框出的人孔蓋範圍。<strong>上傳的照片是重新編碼過的，不含原始 EXIF（拍攝時間與 GPS 座標已被移除）。</strong></td><td>你按下「上傳給大家看」時</td></tr>
   <tr><td>你的打卡紀錄</td><td>你在哪幾枚人孔蓋打過卡、打卡時間、你上傳的照片編號，以及你按過讚的照片。存在只有你自己讀得到的個人紀錄裡，用來換手機時還原打卡，以及統計「幾個人來過」。<strong>不含座標。</strong></td><td>你打卡、上傳或按讚時</td></tr>
   <tr><td>分享出去的路線</td><td>你按「建立下載連結」時，該條路線的內容、名稱、節點數與日期。連結最長 90 天後自動失效。</td><td>你主動建立分享連結時</td></tr>
-  <tr><td>動態島的推播權杖</td><td>開啟行程的鎖定畫面／動態島時，推播用的權杖（Apple 推播與 Firebase Cloud Messaging）與路線編號，只用來更新動態島的內容。</td><td>你開啟行程動態島時</td></tr>
+  <tr><td>動態島的推播權杖</td><td>開啟行程的鎖定畫面／動態島時，推播用的權杖（Apple 推播權杖與 Firebase Cloud Messaging 權杖）與路線編號，存在 Cloud Firestore 裡以你帳號識別碼為名的一筆紀錄，只用來從伺服器更新動態島的內容。</td><td>你開啟行程動態島時</td></tr>
   <tr><td>檢舉</td><td>你檢舉的照片、該照片上傳者的帳號識別碼，以及你填寫的理由。只供我們處理檢舉。</td><td>你送出檢舉時</td></tr>
   <tr><td>站牌座標</td><td>查公車路線時，查到的站牌名稱與座標會存入共用的站牌資料庫，並記下寫入者的帳號識別碼。這是公開的站牌資料，<strong>不是你的位置</strong>。</td><td>查詢公車路線時</td></tr>
-  <tr><td>當機報告</td><td>App 當機時的程式狀態、裝置型號與系統版本，透過 Firebase Crashlytics 傳送，用來修正錯誤。不含你的位置、照片或其他內容。可在「設定」關閉。</td><td>App 當機時</td></tr>
+  <tr><td>當機報告</td><td>App 當機時的程式呼叫堆疊（stack trace）、裝置型號與系統版本，透過 Firebase Crashlytics 傳送，用來修正錯誤。不含你的位置、照片或其他內容。<strong>預設開啟</strong>，可在「設定 → 傳送當機報告」關閉。</td><td>App 當機時</td></tr>
 </table>
 
 <h2>二、只留在你裝置上的東西</h2>
@@ -60,7 +60,7 @@
 </ul>
 
 <h2>三、資料存在哪裡</h2>
-<p>上傳的資料存放在 Google Firebase（Cloud Firestore），伺服器位置為 <code>asia-northeast1</code>（東京）。本 App 沒有自己的伺服器，也沒有後台可以瀏覽使用者資料。</p>
+<p>上傳的資料存放在 Google Firebase（Cloud Firestore），伺服器位置為 <code>asia-northeast1</code>（東京）。本 App 除了 Firebase 之外沒有另外架設伺服器。開發者可以透過 Firebase 主控台存取這些資料，只用於審查檢舉、排除故障與執行刪除，不會做其他用途。</p>
 
 <h2>三之一、iCloud 雲端備份</h2>
 <ul>
@@ -82,8 +82,8 @@
 <h2>四之一、廣告（Google AdMob）</h2>
 <ul>
   <li>免費版會在畫面中顯示由 <strong>Google AdMob</strong> 提供的廣告。訂閱 Pro 之後不顯示任何廣告。</li>
-  <li>AdMob 會取得你的裝置廣告識別碼（IDFA）、概略位置（由 IP 推得）與廣告互動紀錄，用來投放與計算廣告。詳見 <a href="https://policies.google.com/technologies/partner-sites">Google 如何使用來自合作夥伴網站的資訊</a>。</li>
-  <li>第一次看到廣告時，系統會詢問是否允許追蹤（ATT）。<strong>選「要求 App 不要追蹤」一樣可以正常使用</strong>，只是廣告不會依你的興趣挑選。</li>
+  <li>AdMob 會取得概略位置（由 IP 推得）與廣告互動紀錄，用來投放與計算廣告。<strong>只有在你允許追蹤（ATT）時</strong>，AdMob 才會取得你的裝置廣告識別碼（IDFA）。詳見 <a href="https://policies.google.com/technologies/partner-sites">Google 如何使用來自合作夥伴網站的資訊</a>。</li>
+  <li>第一次看到廣告時，系統會詢問是否允許追蹤（ATT）。<strong>選「要求 App 不要追蹤」一樣可以正常使用</strong>，此時 AdMob 取不到 IDFA，廣告也不會依你的興趣挑選。</li>
   <li>你可以在「設定 → 隱私權與安全性 → 追蹤」隨時改變這個選擇。</li>
 </ul>
 
@@ -93,17 +93,28 @@
   <li>不同意也不影響其他任何功能。</li>
 </ul>
 
+<h2>四之三、使用的第三方服務</h2>
+<ul>
+  <li><strong>Google AdMob</strong>：免費版的廣告（見四之一）。</li>
+  <li><strong>Firebase Authentication</strong>：Apple／Google 登入與帳號管理；保存 uid 與登入服務提供的電子郵件地址。</li>
+  <li><strong>Cloud Firestore</strong>：照片牆、按讚、暱稱、打卡紀錄、分享路線、檢舉與推播權杖的儲存。</li>
+  <li><strong>Firebase Cloud Messaging</strong>：推播權杖，用來從伺服器更新行程動態島。</li>
+  <li><strong>Firebase Crashlytics</strong>：當機報告（呼叫堆疊與裝置型號），預設開啟，可在設定關閉。</li>
+  <li><strong>Apple iCloud（CloudKit）</strong>：Pro 的雲端備份，存在你自己的 iCloud（見三之一）。</li>
+  <li>查詢路線時使用的交通查詢服務（見三之二）。</li>
+</ul>
+
 <h2>五、我們不做的事</h2>
 <ul>
-  <li>除了上述的 Google AdMob（廣告）與 Firebase Crashlytics（當機報告，可關閉）之外，不使用其他第三方分析或追蹤 SDK。</li>
   <li>不販售、不交換你的資料。</li>
-  <li>不收集聯絡人、通話紀錄或瀏覽紀錄。除了廣告識別碼（AdMob）與推播權杖之外，不收集其他裝置識別碼。</li>
+  <li>不收集聯絡人、通話紀錄或瀏覽紀錄。</li>
+  <li>裝置識別碼：只有在你允許追蹤（ATT）時，AdMob 才會取得廣告識別碼（IDFA）；另外會有推播權杖（見一），以及 Firebase 為推播與當機報告產生的隨機安裝識別碼。除此之外不收集其他裝置識別碼。</li>
 </ul>
 
 <h2>六、保留多久、怎麼刪除</h2>
 <ul>
   <li>你上傳的照片會一直保留，直到你自己刪除它，或刪除帳號。App 內可以直接刪除自己的照片，也可以在設定裡一次撤回全部。</li>
-  <li><strong>刪除帳號</strong>：設定頁最下方有「刪除帳號」。按下之後，會撤銷你的分享連結、把你的照片從照片牆移除、收回你按過的讚、打卡不再計入人數、刪除推播權杖，然後刪除帳號本身。其餘與你的帳號識別碼有關的雲端資料（照片檔案、個人紀錄）會先封存，並在 <strong>30 天內</strong>清除，無法復原。</li>
+  <li><strong>刪除帳號</strong>：設定頁最下方有「刪除帳號」。按下之後會<strong>刪除你的帳號與帳號的資料</strong>：你上傳的照片、按過的讚、暱稱、打卡紀錄、分享連結、推播權杖，以及我們伺服器上的相關備份。照片會立即從照片牆消失、打卡立即不再計入人數；其餘資料會在 <strong>30 天內</strong>完成刪除，無法復原。這台裝置上的資料不受影響。</li>
   <li>分享連結最長 90 天後自動失效，你也可以隨時撤銷。</li>
   <li>裝置上的資料，移除本 App 即一併移除。iCloud 上的備份需另外從 iCloud 設定刪除（見三之一）。</li>
 </ul>
@@ -127,15 +138,15 @@
 
 <table>
   <tr><th>項目</th><th>内容</th><th>タイミング</th></tr>
-  <tr><td>アカウント識別子</td><td>Firebase が発行する利用者 ID（uid）。Apple・Google でログインした場合も、当方が受け取るのはこの ID のみで、パスワードは受け取りません。</td><td>ログイン時・クラウド機能の利用時</td></tr>
+  <tr><td>アカウント識別子とメールアドレス</td><td>Firebase Authentication が発行する利用者 ID（uid）。Apple・Google でログインした場合、Firebase はこの ID と、Apple／Google から提供されるメールアドレス（Apple の「メールを非公開」を使った場合は Apple の転送用アドレス）を受け取り保存します。メールアドレスは設定画面でログイン中のアカウントを表示するためだけに使います。パスワードは受け取りません。</td><td>ログイン時・クラウド機能の利用時</td></tr>
   <tr><td>ニックネーム</td><td>ご自身で設定する表示名。共有した写真に併記されます。</td><td>設定したとき</td></tr>
   <tr><td>共有を選んだ写真</td><td>写真本体と、アプリ内で指定したマンホールの範囲。<strong>アップロードされる写真は再エンコードされ、元の EXIF（撮影日時・GPS）は含まれません。</strong></td><td>「みんなに公開する」を押したとき</td></tr>
   <tr><td>チェックインの記録</td><td>チェックインしたマンホールとその日時、アップロードした写真の ID、「いいね」した写真。ご本人だけが読める個人記録に保存し、機種変更時の復元と「何人が訪れたか」の集計に使います。<strong>座標は含みません。</strong></td><td>チェックイン・アップロード・いいねのとき</td></tr>
   <tr><td>共有したコース</td><td>「ダウンロードリンクを作る」を押したときの、そのコースの内容・名称・地点数・日付。リンクは最長 90 日で失効します。</td><td>ご自身でリンクを作成したとき</td></tr>
-  <tr><td>ライブアクティビティのプッシュトークン</td><td>行程のロック画面／ダイナミックアイランドを開始したときのプッシュ用トークン（Apple のプッシュ通知と Firebase Cloud Messaging）とコース ID。表示の更新にのみ使います。</td><td>行程のライブアクティビティ開始時</td></tr>
+  <tr><td>ライブアクティビティのプッシュトークン</td><td>行程のロック画面／ダイナミックアイランドを開始したときのプッシュ用トークン（Apple のプッシュトークンと Firebase Cloud Messaging のトークン）とコース ID。Cloud Firestore のアカウント識別子ごとの記録に保存し、サーバーから表示を更新するためにのみ使います。</td><td>行程のライブアクティビティ開始時</td></tr>
   <tr><td>通報</td><td>通報した写真、その投稿者のアカウント識別子、入力した理由。通報の対応にのみ使います。</td><td>通報を送信したとき</td></tr>
   <tr><td>バス停の座標</td><td>バスの経路検索で見つかったバス停の名称と座標を共有のバス停データベースに保存し、書き込んだアカウント識別子を記録します。公開されているバス停の情報であり、<strong>あなたの位置ではありません。</strong></td><td>バスの経路検索時</td></tr>
-  <tr><td>クラッシュレポート</td><td>アプリが異常終了したときのプログラムの状態・機種・OS バージョンを Firebase Crashlytics で送信し、不具合の修正に使います。位置・写真などの内容は含みません。「設定」でオフにできます。</td><td>異常終了時</td></tr>
+  <tr><td>クラッシュレポート</td><td>アプリが異常終了したときのスタックトレース・機種・OS バージョンを Firebase Crashlytics で送信し、不具合の修正に使います。位置・写真などの内容は含みません。<strong>初期設定でオン</strong>で、「設定」でオフにできます。</td><td>異常終了時</td></tr>
 </table>
 
 <h2>2. 端末内にのみ保存されるもの</h2>
@@ -148,7 +159,7 @@
 </ul>
 
 <h2>3. 保存場所</h2>
-<p>送信されたデータは Google Firebase（Cloud Firestore）の <code>asia-northeast1</code>（東京）に保存されます。当方は独自のサーバーを持たず、利用者データを閲覧する管理画面もありません。</p>
+<p>送信されたデータは Google Firebase（Cloud Firestore）の <code>asia-northeast1</code>（東京）に保存されます。Firebase 以外に独自のサーバーは設けていません。開発者は Firebase コンソールからこのデータにアクセスでき、通報の審査・障害対応・削除の実行にのみ使います。</p>
 
 <h2>3-1. iCloud バックアップ</h2>
 <ul>
@@ -170,8 +181,8 @@
 <h2>4-1. 広告（Google AdMob）</h2>
 <ul>
   <li>無料版では <strong>Google AdMob</strong> の広告を表示します。Pro を購読すると広告は表示されません。</li>
-  <li>AdMob は広告 ID（IDFA）・おおよその位置（IP から推定）・広告の操作履歴を取得し、広告の配信と計測に使います。詳細は <a href="https://policies.google.com/technologies/partner-sites">Google のポリシー</a>をご覧ください。</li>
-  <li>初回表示時に ATT（トラッキングの許可）を求めます。<strong>許可しなくても通常どおり利用できます</strong>（広告が興味に基づかなくなるだけです）。</li>
+  <li>AdMob はおおよその位置（IP から推定）・広告の操作履歴を取得し、広告の配信と計測に使います。<strong>トラッキングを許可（ATT）した場合に限り</strong>、AdMob は広告 ID（IDFA）も取得します。詳細は <a href="https://policies.google.com/technologies/partner-sites">Google のポリシー</a>をご覧ください。</li>
+  <li>初回表示時に ATT（トラッキングの許可）を求めます。<strong>許可しなくても通常どおり利用できます</strong>。その場合 AdMob は IDFA を取得できず、広告も興味に基づかなくなります。</li>
   <li>「設定 → プライバシーとセキュリティ → トラッキング」でいつでも変更できます。</li>
 </ul>
 
@@ -181,17 +192,28 @@
   <li>許可しなくても他の機能には影響しません。</li>
 </ul>
 
+<h2>4-3. 利用している第三者サービス</h2>
+<ul>
+  <li><strong>Google AdMob</strong>：無料版の広告（4-1 参照）。</li>
+  <li><strong>Firebase Authentication</strong>：Apple／Google ログインとアカウント管理。uid とログインサービスから提供されるメールアドレスを保存します。</li>
+  <li><strong>Cloud Firestore</strong>：フォトウォール・いいね・ニックネーム・チェックイン記録・共有コース・通報・プッシュトークンの保存。</li>
+  <li><strong>Firebase Cloud Messaging</strong>：行程のライブアクティビティをサーバーから更新するためのプッシュトークン。</li>
+  <li><strong>Firebase Crashlytics</strong>：クラッシュレポート（スタックトレースと機種）。初期設定でオン、設定でオフにできます。</li>
+  <li><strong>Apple iCloud（CloudKit）</strong>：Pro のクラウドバックアップ。ご自身の iCloud に保存されます（3-1 参照）。</li>
+  <li>経路検索に使う経路検索サービス（3-2 参照）。</li>
+</ul>
+
 <h2>5. 行わないこと</h2>
 <ul>
-  <li>上記の Google AdMob（広告）と Firebase Crashlytics（クラッシュレポート、オフにできます）以外の第三者の解析・トラッキング SDK は使用しません。</li>
   <li>データの販売・交換は行いません。</li>
-  <li>連絡先・通話履歴・閲覧履歴は取得しません。広告 ID（AdMob）とプッシュトークン以外の端末識別子は取得しません。</li>
+  <li>連絡先・通話履歴・閲覧履歴は取得しません。</li>
+  <li>端末識別子：トラッキングを許可（ATT）した場合に限り AdMob が広告 ID（IDFA）を取得します。このほか、プッシュトークン（1 参照）と、Firebase がプッシュ通知とクラッシュレポートのために生成するランダムなインストール ID があります。それ以外の端末識別子は取得しません。</li>
 </ul>
 
 <h2>6. 保存期間と削除</h2>
 <ul>
   <li>アップロードした写真は、ご自身で削除するかアカウントを削除するまで保存されます。アプリ内で自分の写真を削除でき、設定から一括で取り下げることもできます。</li>
-  <li><strong>アカウントの削除</strong>：設定画面の最下部にあります。実行すると、共有リンクの取り消し、写真のフォトウォールからの削除、「いいね」の取り消し、チェックイン人数からの除外、プッシュトークンの削除を行ったうえでアカウントを削除します。その他のアカウント識別子に紐づくクラウド上のデータ（写真ファイル・個人記録）はいったん保管し、<strong>30 日以内</strong>に消去します。復元はできません。</li>
+  <li><strong>アカウントの削除</strong>：設定画面の最下部にあります。実行すると<strong>アカウントとそのデータを削除します</strong>：アップロードした写真、「いいね」、ニックネーム、チェックイン記録、共有リンク、プッシュトークン、および当方サーバー上の関連するバックアップ。写真はただちにフォトウォールから消え、チェックインもただちに人数から除外されます。その他のデータは <strong>30 日以内</strong>に削除を完了します。復元はできません。端末内のデータには影響しません。</li>
   <li>共有リンクは最長 90 日で失効し、いつでも取り消せます。</li>
   <li>端末内のデータは、本アプリを削除すると一緒に削除されます。iCloud 上のバックアップは iCloud の設定から別途削除してください（3-1 参照）。</li>
 </ul>
@@ -215,15 +237,15 @@
 
 <table>
   <tr><th>Item</th><th>What it is</th><th>When</th></tr>
-  <tr><td>Account identifier</td><td>A user id (uid) issued by Firebase. When you sign in with Apple or Google we receive only this id, never your password.</td><td>When you sign in or use cloud features</td></tr>
+  <tr><td>Account identifier and email</td><td>A user id (uid) issued by Firebase Authentication. When you sign in with Apple or Google, Firebase receives and stores this id together with the email address Apple or Google provides (an Apple relay address if you use “Hide My Email”). The email is used only to show which account you are signed in with in Settings. We never receive your password.</td><td>When you sign in or use cloud features</td></tr>
   <tr><td>Nickname</td><td>A display name you choose. It appears next to photos you share.</td><td>When you set it</td></tr>
   <tr><td>Photos you choose to share</td><td>The photo, plus the cover area you framed in the app. <strong>Uploaded photos are re-encoded and carry no original EXIF — capture time and GPS are stripped.</strong></td><td>When you tap “Share with everyone”</td></tr>
   <tr><td>Your check-in record</td><td>Which covers you checked in at and when, the ids of photos you uploaded, and the photos you liked. Kept in a personal record only you can read, used to restore check-ins on a new phone and to count how many people have been to a cover. <strong>No coordinates.</strong></td><td>When you check in, upload or like</td></tr>
   <tr><td>Routes you share</td><td>When you create a download link: that route's contents, name, stop count and date. Links expire after at most 90 days.</td><td>When you create a share link</td></tr>
-  <tr><td>Live Activity push tokens</td><td>When you start a trip's Lock Screen / Dynamic Island activity: the push tokens (Apple Push Notification service and Firebase Cloud Messaging) and the route id, used only to update that activity.</td><td>When you start a trip Live Activity</td></tr>
+  <tr><td>Live Activity push tokens</td><td>When you start a trip's Lock Screen / Dynamic Island activity: the push tokens (Apple Push Notification service token and Firebase Cloud Messaging token) and the route id, stored in Cloud Firestore in a record keyed by your account identifier and used only to update that activity from the server.</td><td>When you start a trip Live Activity</td></tr>
   <tr><td>Reports</td><td>The photo you reported, its uploader's account identifier, and the reason you entered. Used only to handle the report.</td><td>When you send a report</td></tr>
   <tr><td>Bus stop coordinates</td><td>When searching bus routes, the names and coordinates of bus stops found are saved to a shared bus-stop database along with the account identifier that wrote them. This is public bus-stop data, <strong>not your location</strong>.</td><td>When you search bus routes</td></tr>
-  <tr><td>Crash reports</td><td>When the app crashes, the program state, device model and OS version are sent via Firebase Crashlytics so we can fix the bug. No location, photos or other content. You can turn this off in Settings.</td><td>When the app crashes</td></tr>
+  <tr><td>Crash reports</td><td>When the app crashes, the stack trace, device model and OS version are sent via Firebase Crashlytics so we can fix the bug. No location, photos or other content. <strong>On by default</strong>; you can turn it off in Settings.</td><td>When the app crashes</td></tr>
 </table>
 
 <h2>2. What stays on your device</h2>
@@ -236,7 +258,7 @@
 </ul>
 
 <h2>3. Where data is stored</h2>
-<p>Uploaded data is stored in Google Firebase (Cloud Firestore), region <code>asia-northeast1</code> (Tokyo). We run no server of our own and have no admin console for browsing user data.</p>
+<p>Uploaded data is stored in Google Firebase (Cloud Firestore), region <code>asia-northeast1</code> (Tokyo). Apart from Firebase we run no server of our own. The developer can access this data through the Firebase console and does so only to review reports, troubleshoot problems and carry out deletions.</p>
 
 <h2>3.1 iCloud backup</h2>
 <ul>
@@ -258,8 +280,8 @@
 <h2>4.1 Ads (Google AdMob)</h2>
 <ul>
   <li>The free version shows ads from <strong>Google AdMob</strong>. With a Pro subscription no ads are shown.</li>
-  <li>AdMob receives your advertising identifier (IDFA), approximate location (from IP) and ad interactions to serve and measure ads — see <a href="https://policies.google.com/technologies/partner-sites">Google's policy</a>.</li>
-  <li>You'll be asked for App Tracking Transparency permission the first time. <strong>Declining is fine</strong> — ads simply stop being personalised.</li>
+  <li>AdMob receives your approximate location (from IP) and ad interactions to serve and measure ads. <strong>Only if you allow tracking (ATT)</strong> does AdMob also receive your advertising identifier (IDFA) — see <a href="https://policies.google.com/technologies/partner-sites">Google's policy</a>.</li>
+  <li>You'll be asked for App Tracking Transparency permission the first time. <strong>Declining is fine</strong> — AdMob then gets no IDFA and ads are not personalised.</li>
   <li>You can change this any time in Settings → Privacy &amp; Security → Tracking.</li>
 </ul>
 
@@ -269,17 +291,28 @@
   <li>Declining does not affect any other feature.</li>
 </ul>
 
+<h2>4.3 Third-party services we use</h2>
+<ul>
+  <li><strong>Google AdMob</strong>: ads in the free version (see 4.1).</li>
+  <li><strong>Firebase Authentication</strong>: Apple / Google sign-in and account management; stores your uid and the email address the sign-in provider returns.</li>
+  <li><strong>Cloud Firestore</strong>: storage for the photo wall, likes, nicknames, check-in records, shared routes, reports and push tokens.</li>
+  <li><strong>Firebase Cloud Messaging</strong>: push tokens used to update trip Live Activities from the server.</li>
+  <li><strong>Firebase Crashlytics</strong>: crash reports (stack trace and device model); on by default, can be turned off in Settings.</li>
+  <li><strong>Apple iCloud (CloudKit)</strong>: Pro cloud backup, stored in your own iCloud (see 3.1).</li>
+  <li>The route services used for route searches (see 3.2).</li>
+</ul>
+
 <h2>5. What we don't do</h2>
 <ul>
-  <li>Apart from Google AdMob (ads) and Firebase Crashlytics (crash reports, can be turned off) above, no third-party analytics or tracking SDKs.</li>
   <li>We do not sell or trade your data.</li>
-  <li>We do not collect contacts, call history or browsing history. Apart from the advertising identifier (AdMob) and push tokens, we collect no device identifiers.</li>
+  <li>We do not collect contacts, call history or browsing history.</li>
+  <li>Device identifiers: AdMob receives the advertising identifier (IDFA) only if you allow tracking (ATT). There are also push tokens (see 1) and random installation ids that Firebase generates for push and crash reporting. We collect no other device identifiers.</li>
 </ul>
 
 <h2>6. Retention and deletion</h2>
 <ul>
   <li>Photos you upload stay until you delete them or delete your account. You can delete your own photo inside the app, or withdraw all of them at once in Settings.</li>
-  <li><strong>Delete account</strong> sits at the bottom of Settings. It revokes your share links, removes your photos from the photo wall, withdraws your likes, stops counting your check-ins, deletes your push tokens, and then deletes the account itself. Remaining cloud data tied to your account identifier (photo files, personal record) is archived and erased <strong>within 30 days</strong>. This cannot be undone.</li>
+  <li><strong>Delete account</strong> sits at the bottom of Settings. It <strong>deletes your account and its data</strong>: your uploaded photos, likes, nickname, check-in records, share links, push tokens, and related backups on our servers. Your photos disappear from the photo wall and your check-ins stop being counted immediately; deletion of the rest is completed <strong>within 30 days</strong>. This cannot be undone. Data on this device is not affected.</li>
   <li>Share links expire after at most 90 days, and you can revoke one at any time.</li>
   <li>On-device data is removed when you delete the app. Backups in iCloud must be deleted from iCloud settings (see 3.1).</li>
 </ul>
